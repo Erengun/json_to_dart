@@ -53,8 +53,8 @@ class TypeDefinition {
           }
         }
       } else {
-        // when array is empty insert Null just to warn the user
-        elemType = "Null";
+        // when array is empty insert dynamic just to warn the user
+        elemType = "dynamic";
       }
       return new TypeDefinition(type,
           astNode: astNode, subtype: elemType, isAmbiguous: isAmbiguous);
