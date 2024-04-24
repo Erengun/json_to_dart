@@ -1,6 +1,10 @@
 # JSON to Dart
 
-[![Build Status](https://travis-ci.org/javiercbk/json_to_dart.svg?branch=master)](https://travis-ci.org/javiercbk/json_to_dart)
+This is a fork of [json_to_dart](https://github.com/javiercbk/json_to_dart) by [Javier Lecuona](https://github.com/javiercbk) with some modifications to make it work with the latest Dart SDK.
+
+I aim to maintain this fork and keep it up to date with the latest Dart SDK. 
+
+Warning: This is a work in progress and may not work as expected.
 
 Given a JSON string, this library will generate all the necessary Dart classes to parse and generate JSON.
 
