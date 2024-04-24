@@ -30,12 +30,12 @@ class Sample {
     randomIntegers = json['randomIntegers'].cast<int>();
     randomDoubles = json['randomDoubles'].cast<double>();
     personalInfo = json['personalInfo'] != null
-        ? new PersonalInfo.fromJson(json['personalInfo'])
+        ? PersonalInfo.fromJson(json['personalInfo'])
         : null;
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = Map<String, dynamic>();
     data['username'] = this.username;
     data['favouriteInteger'] = this.favouriteInteger;
     data['favouriteDouble'] = this.favouriteDouble;
@@ -66,13 +66,13 @@ class PersonalInfo {
     if (json['phones'] != null) {
       phones = <Phones>[];
       json['phones'].forEach((v) {
-        phones!.add(new Phones.fromJson(v));
+        phones!.add(Phones.fromJson(v));
       });
     }
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = Map<String, dynamic>();
     data['firstName'] = this.firstName;
     data['lastName'] = this.lastName;
     data['location'] = this.location;
@@ -97,7 +97,7 @@ class Phones {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = new Map<String, dynamic>();
+    final Map<String, dynamic> data = Map<String, dynamic>();
     data['type'] = this.type;
     data['number'] = this.number;
     data['shouldCall'] = this.shouldCall;

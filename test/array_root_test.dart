@@ -7,7 +7,7 @@ void main() {
   group("model-generator", () {
     test("Should generate the classes to parse the JSON", () {
       final jsonRawData =
-          new File("test_resources/array_root.json").readAsStringSync();
+          File("test_resources/array_root.json").readAsStringSync();
       final generator = ModelGenerator('ArrayRoot');
       final dartCode = generator.generateDartClasses(jsonRawData);
       expect(dartCode.warnings.length, equals(0));

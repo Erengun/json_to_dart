@@ -6,10 +6,9 @@ import './generated/sample_private.dart';
 void main() {
   group("model-generator", () {
     test("Generated class with private fields should correctly parse JSON", () {
-      final jsonRawData =
-          new File("test_resources/test.json").readAsStringSync();
+      final jsonRawData = File("test_resources/test.json").readAsStringSync();
       Map<String, dynamic> sampleMap = json.decode(jsonRawData);
-      final sample = new Sample.fromJson(sampleMap);
+      final sample = Sample.fromJson(sampleMap);
       expect(sample, isNot(isNull));
       expect(sample.username, equals('javiercbk'));
       expect(sample.favouriteInteger, equals(18));
@@ -53,9 +52,9 @@ void main() {
         "Generated class with private fields should correctly parse JSON with missing values",
         () {
       final jsonRawData =
-          new File("test_resources/test_missing.json").readAsStringSync();
+          File("test_resources/test_missing.json").readAsStringSync();
       Map<String, dynamic> sampleMap = json.decode(jsonRawData);
-      final sample = new Sample.fromJson(sampleMap);
+      final sample = Sample.fromJson(sampleMap);
       expect(sample, isNot(isNull));
       expect(sample.username, equals('javiercbk'));
       expect(sample.favouriteInteger, isNull);
@@ -88,19 +87,19 @@ void main() {
     test("Generated class with private fields should correctly generate JSON",
         () {
       final phones = <Phones>[];
-      final phone = new Phones(
+      final phone = Phones(
         type: "IP",
         number: "127.0.0.1",
         shouldCall: true,
       );
       phones.add(phone);
-      final personalInfo = new PersonalInfo(
+      final personalInfo = PersonalInfo(
         firstName: "User",
         lastName: "Test",
         location: "In a computer",
         phones: phones,
       );
-      final sample = new Sample(
+      final sample = Sample(
         username: 'Test',
         favouriteInteger: 13,
         favouriteDouble: 3.1416,
@@ -111,7 +110,7 @@ void main() {
         randomDoubles: const [4.4, 5.5],
         personalInfo: personalInfo,
       );
-      final codec = new JsonCodec(toEncodable: (dynamic v) => v.toString());
+      final codec = JsonCodec(toEncodable: (dynamic v) => v.toString());
       final encodedJSON = codec.encode(sample.toJson());
       expect(encodedJSON.contains('"username":"Test"'), equals(true));
       expect(encodedJSON.contains('"favouriteInteger":13'), equals(true));
@@ -135,11 +134,11 @@ void main() {
     test(
         "Generated class with private fields should correctly generate JSON with missing values",
         () {
-      final personalInfo = new PersonalInfo(
+      final personalInfo = PersonalInfo(
         firstName: "User",
         lastName: null,
       );
-      final sample = new Sample(
+      final sample = Sample(
         username: 'Test',
         favouriteInteger: null,
         favouriteDouble: 3.1416,
@@ -149,7 +148,7 @@ void main() {
         randomDoubles: const [4.4, 5.5],
         personalInfo: personalInfo,
       );
-      final codec = new JsonCodec(toEncodable: (dynamic v) => v.toString());
+      final codec = JsonCodec(toEncodable: (dynamic v) => v.toString());
       final encodedJSON = codec.encode(sample.toJson());
       expect(encodedJSON.contains('"username":"Test"'), equals(true));
       expect(encodedJSON.contains('"favouriteInteger":null'), equals(true));

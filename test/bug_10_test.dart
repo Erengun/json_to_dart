@@ -8,8 +8,7 @@ import './generated/bug_ten.dart';
 void main() {
   group("model-generator", () {
     test("Should generate the classes to parse the JSON", () {
-      final jsonRawData =
-          new File("test_resources/bug_10.json").readAsStringSync();
+      final jsonRawData = File("test_resources/bug_10.json").readAsStringSync();
       final generator = ModelGenerator('BugTen');
       final dartCode = generator.generateDartClasses(jsonRawData);
       expect(dartCode.warnings.length, equals(0));
@@ -17,10 +16,9 @@ void main() {
     });
 
     test("Generated class should correctly parse JSON for bug 10", () {
-      final jsonRawData =
-          new File("test_resources/bug_10.json").readAsStringSync();
+      final jsonRawData = File("test_resources/bug_10.json").readAsStringSync();
       Map<String, dynamic> sampleMap = json.decode(jsonRawData);
-      final bugTen = new BugTen.fromJson(sampleMap);
+      final bugTen = BugTen.fromJson(sampleMap);
       expect(bugTen, isNot(isNull));
       expect(bugTen.glossary, isNot(isNull));
       expect(bugTen.glossary!.title, equals('example glossary'));
@@ -51,11 +49,11 @@ void main() {
       final glossSeeAlso = <String>[];
       glossSeeAlso.add("GML");
       glossSeeAlso.add("XML");
-      final glossDef = new GlossDef(
+      final glossDef = GlossDef(
           para:
               "A meta-markup language, used to create markup languages such as DocBook.",
           glossSeeAlso: glossSeeAlso);
-      final glossEntry = new GlossEntry(
+      final glossEntry = GlossEntry(
         abbrev: "ISO 8879:1986",
         acronym: "SGML",
         glossDef: glossDef,
@@ -64,19 +62,19 @@ void main() {
         iD: "SGML",
         sortAs: "SGML",
       );
-      final glossList = new GlossList(
+      final glossList = GlossList(
         glossEntry: glossEntry,
       );
-      final glossDiv = new GlossDiv(
+      final glossDiv = GlossDiv(
         glossList: glossList,
         title: "S",
       );
-      final glossary = new Glossary(
+      final glossary = Glossary(
         glossDiv: glossDiv,
         title: "example glossary",
       );
-      final bugTen = new BugTen(glossary: glossary);
-      final codec = new JsonCodec(toEncodable: (dynamic v) => v.toString());
+      final bugTen = BugTen(glossary: glossary);
+      final codec = JsonCodec(toEncodable: (dynamic v) => v.toString());
       final encodedJSON = codec.encode(bugTen.toJson());
       expect(encodedJSON.contains('"title":"example glossary"'), equals(true));
       expect(encodedJSON.contains('"GlossDiv":{"title":"S"'), equals(true));

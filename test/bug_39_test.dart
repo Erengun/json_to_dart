@@ -7,7 +7,7 @@ void main() {
   group("model-generator", () {
     test("Should generate the classes to parse the JSON", () {
       // final jsonRawData =
-      //     new File("test_resources/bug_39.json").readAsStringSync();
+      //     File("test_resources/bug_39.json").readAsStringSync();
       // final generator = ModelGenerator('BugThirtyNine');
       // FIXME: Add matrix support
       // final dartCode = generator.generateDartClasses(jsonRawData);
