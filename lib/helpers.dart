@@ -15,10 +15,10 @@ const Map<String, bool> PRIMITIVE_TYPES = const {
   'List<double>': true,
   'List<String>': true,
   'List<bool>': true,
-  'Null': true,
+  'dynamic': true,
 };
 
-enum ListType { Object, String, Double, Int, Null }
+enum ListType { Object, String, Double, Int, Dynamic }
 
 class MergeableListType {
   final ListType listType;
@@ -28,14 +28,14 @@ class MergeableListType {
 }
 
 MergeableListType mergeableListType(List<dynamic> list) {
-  ListType t = ListType.Null;
+  ListType t = ListType.Dynamic;
   bool isAmbigous = false;
   list.forEach((e) {
     ListType? inferredType = getInferredType(e);
-    if (t != ListType.Null && t != inferredType) {
+    if (t != ListType.Dynamic && t != inferredType) {
       isAmbigous = true;
     }
-    t = inferredType ?? ListType.Null;
+    t = inferredType ?? ListType.Dynamic;
   });
   return MergeableListType(t, isAmbigous);
 }
@@ -212,7 +212,7 @@ String getTypeName(dynamic obj) {
   } else if (obj is bool) {
     return 'bool';
   } else if (obj == null) {
-    return 'Null';
+    return 'dynamic';
   } else if (obj is List) {
     return 'List';
   } else {
